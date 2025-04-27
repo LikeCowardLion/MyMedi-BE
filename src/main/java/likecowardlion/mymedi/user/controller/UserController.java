@@ -27,7 +27,7 @@ public class UserController {
 
 
     // 유저 생성 (회원가입)
-    @PostMapping("")
+    @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO){
 
         // 유저 생성 service 실행
