@@ -1,7 +1,9 @@
 package likecowardlion.mymedi.user.service;
 
 import likecowardlion.mymedi.user.bean.SaveUserBean;
+import likecowardlion.mymedi.user.bean.UpdateUserBean;
 import likecowardlion.mymedi.user.domain.DTO.RequestUserSaveDTO;
+import likecowardlion.mymedi.user.domain.DTO.RequestUserUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +13,12 @@ import java.util.UUID;
 public class UserService {
 
     SaveUserBean saveUserBean;
+    UpdateUserBean updateUserBean;
 
     @Autowired
-    public UserService(SaveUserBean saveUserBean){
+    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean){
         this.saveUserBean = saveUserBean;
+        this.updateUserBean = updateUserBean;
     }
 
 
@@ -23,6 +27,13 @@ public class UserService {
     public UUID saveUser(RequestUserSaveDTO requestUserSaveDTO){
 
         return saveUserBean.exec(requestUserSaveDTO);
+
+    }
+
+    // 유저 수정
+    public UUID updateUser(RequestUserUpdateDTO requestUserUpdateDTO){
+
+        return updateUserBean.exec(requestUserUpdateDTO);
 
     }
 }
