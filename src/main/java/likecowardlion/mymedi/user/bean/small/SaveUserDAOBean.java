@@ -5,33 +5,24 @@ import likecowardlion.mymedi.user.repository.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.UUID;
 
 @Component
-public class GetUserDAOBean {
-
+public class SaveUserDAOBean {
+    
     UserRepositoryJPA userRepositoryJPA;
-
+    
     @Autowired
-    public GetUserDAOBean(UserRepositoryJPA userRepositoryJPA){
+    public SaveUserDAOBean(UserRepositoryJPA userRepositoryJPA){
         this.userRepositoryJPA = userRepositoryJPA;
     }
-
-
-
-    // userId로 검색해 DAO 반환
-    public UserDAO exec(UUID userId){
-
-        return userRepositoryJPA.findById(userId).get();
-
+    
+    
+    
+    // DAO를 DB에 저장
+    public void exec(UserDAO userDAO){
+        
+        userRepositoryJPA.save(userDAO);
+        
     }
-
-    // emailId로 검색해 DAO 반환
-    public UserDAO exec(String emailId){
-
-        return userRepositoryJPA.findByEmailIdAndIsDeleted(emailId, false);
-
-    }
-
 }
