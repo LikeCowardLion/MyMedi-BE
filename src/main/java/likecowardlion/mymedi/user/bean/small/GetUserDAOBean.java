@@ -28,7 +28,7 @@ public class GetUserDAOBean {
     }
 
     // emailId로 검색해 DAO 반환
-    public List<UserDAO> exec(String emailId){
+    public UserDAO exec(String emailId){
 
         return userRepositoryJPA.findByEmailId(emailId);
 
