@@ -1,12 +1,10 @@
 package likecowardlion.mymedi.user.service;
 
+import likecowardlion.mymedi.user.bean.DeleteUserBean;
 import likecowardlion.mymedi.user.bean.LoginUserBean;
 import likecowardlion.mymedi.user.bean.SaveUserBean;
 import likecowardlion.mymedi.user.bean.UpdateUserBean;
-import likecowardlion.mymedi.user.domain.DTO.RequestUserLoginDTO;
-import likecowardlion.mymedi.user.domain.DTO.RequestUserSaveDTO;
-import likecowardlion.mymedi.user.domain.DTO.RequestUserUpdateDTO;
-import likecowardlion.mymedi.user.domain.DTO.ResponseUserLoginDTO;
+import likecowardlion.mymedi.user.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +16,14 @@ public class UserService {
     SaveUserBean saveUserBean;
     UpdateUserBean updateUserBean;
     LoginUserBean loginUserBean;
+    DeleteUserBean deleteUserBean;
 
     @Autowired
-    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, LoginUserBean loginUserBean){
+    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, LoginUserBean loginUserBean, DeleteUserBean deleteUserBean){
         this.saveUserBean = saveUserBean;
         this.updateUserBean = updateUserBean;
         this.loginUserBean = loginUserBean;
+        this.deleteUserBean = deleteUserBean;
     }
 
 
@@ -48,4 +48,12 @@ public class UserService {
         return updateUserBean.exec(requestUserUpdateDTO);
 
     }
+
+    // 유저 삭제
+    public boolean deleteUser(RequestUserDeleteDTO requestUserDeleteDTO){
+
+        return deleteUserBean.exec(requestUserDeleteDTO);
+
+    }
+
 }

@@ -30,7 +30,7 @@ public class GetUserDAOBean {
     // emailId로 검색해 DAO 반환
     public UserDAO exec(String emailId){
 
-        return userRepositoryJPA.findByEmailId(emailId);
+        return userRepositoryJPA.findByEmailIdAndIsDeleted(emailId, false);
 
     }
 

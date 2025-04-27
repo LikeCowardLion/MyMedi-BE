@@ -1,9 +1,6 @@
 package likecowardlion.mymedi.user.controller;
 
-import likecowardlion.mymedi.user.domain.DTO.RequestUserLoginDTO;
-import likecowardlion.mymedi.user.domain.DTO.RequestUserSaveDTO;
-import likecowardlion.mymedi.user.domain.DTO.RequestUserUpdateDTO;
-import likecowardlion.mymedi.user.domain.DTO.ResponseUserLoginDTO;
+import likecowardlion.mymedi.user.domain.DTO.*;
 import likecowardlion.mymedi.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,4 +86,22 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMap);
 
     }
+
+    // 유저 삭제
+    @DeleteMapping("")
+    public ResponseEntity<Map<String, Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO){
+
+        // 유저 삭제 service 실행 & 삭제 성공 여부 설정
+        boolean success = userService.deleteUser(requestUserDeleteDTO);
+
+        // 반환할 JSON 데이터 설정
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("success", success);
+        responseMap.put("message", success ? "유저 삭제 성공" : "유저 삭제 실패");
+
+        // status, body 설정 후 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(responseMap);
+
+    }
+
 }

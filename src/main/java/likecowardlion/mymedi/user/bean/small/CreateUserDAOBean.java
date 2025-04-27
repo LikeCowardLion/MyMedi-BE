@@ -25,6 +25,7 @@ public class CreateUserDAOBean {
                 .age(requestUserSaveDTO.getAge())
                 .tall(requestUserSaveDTO.getTall())
                 .weight(requestUserSaveDTO.getWeight())
+                .isDeleted(false)
                 .build();
 
     }

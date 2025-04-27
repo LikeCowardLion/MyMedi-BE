@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface UserRepositoryJPA extends JpaRepository<UserDAO, UUID> {
 
-    UserDAO findByEmailId(String emailId);
+    UserDAO findByEmailIdAndIsDeleted(String emailId, Boolean isDeleted);
 
 }

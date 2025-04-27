@@ -25,5 +25,6 @@ public class UserDAO {
     Integer age;
     Integer tall;
     Integer weight;
+    Boolean isDeleted;
 
 }
