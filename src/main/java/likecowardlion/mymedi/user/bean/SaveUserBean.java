@@ -30,7 +30,7 @@ public class SaveUserBean {
     public UUID exec(RequestUserSaveDTO requestUserSaveDTO){
 
         // emailId 중복 체크
-        if (getUserDAOBean.exec(requestUserSaveDTO.getEmailId()) == null) return null;
+        if (getUserDAOBean.exec(requestUserSaveDTO.getEmailId()) != null) return null;
 
         // DTO 정보로 DAO 생성
         UserDAO dao = createUserDAOBean.exec(requestUserSaveDTO);
