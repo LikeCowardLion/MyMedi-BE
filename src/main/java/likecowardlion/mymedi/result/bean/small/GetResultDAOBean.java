@@ -5,7 +5,6 @@ import likecowardlion.mymedi.result.repository.ResultRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,6 +41,13 @@ public class GetResultDAOBean {
 
         // 검색해 전체 DAO 반환
         return resultRepositoryJPA.findByUserIdAndStartedAtBetweenOrderByStartedAtAsc(userId, monthStart, monthEnd);
+
+    }
+
+    // userId와 gameId로 날짜별 최고 점수 전체 검색
+    public List<ResultDAO> exec(UUID userId, UUID gameId){
+
+        return resultRepositoryJPA.findDailyMaxScores(userId, gameId);
 
     }
 
