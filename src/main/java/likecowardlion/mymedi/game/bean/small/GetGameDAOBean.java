@@ -5,6 +5,7 @@ import likecowardlion.mymedi.game.repository.GameRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -23,6 +24,13 @@ public class GetGameDAOBean {
     public GameDAO exec(UUID gameId){
 
         return gameRepositoryJPA.findById(gameId).get();
+
+    }
+
+    // 전체 DAO 반환
+    public List<GameDAO> exec(){
+
+        return gameRepositoryJPA.findAll();
 
     }
 }
