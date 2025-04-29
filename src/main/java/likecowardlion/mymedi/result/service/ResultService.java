@@ -16,15 +16,17 @@ public class ResultService {
     GetResultWeekBean getResultWeekBean;
     GetResultStatisticBean getResultStatisticBean;
     GetResultStatisticAllBean getResultStatisticAllBean;
+    GetResultRankAllBean getResultRankAllBean;
     SaveResultBean saveResultBean;
 
     @Autowired
-    public ResultService(GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, GetResultStatisticAllBean getResultStatisticAllBean, SaveResultBean saveResultBean){
+    public ResultService(GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, GetResultStatisticAllBean getResultStatisticAllBean, GetResultRankAllBean getResultRankAllBean, SaveResultBean saveResultBean){
         this.getResultCountBean = getResultCountBean;
         this.getResultMonthBean = getResultMonthBean;
         this.getResultWeekBean = getResultWeekBean;
         this.getResultStatisticBean = getResultStatisticBean;
         this.getResultStatisticAllBean = getResultStatisticAllBean;
+        this.getResultRankAllBean = getResultRankAllBean;
         this.saveResultBean = saveResultBean;
     }
 
@@ -62,6 +64,13 @@ public class ResultService {
     public List<ResponseResultStatisticAllGetDTO> getStatisticResultAll(UUID userId){
 
         return getResultStatisticAllBean.exec(userId);
+
+    }
+
+    // 결과 랭킹 전체 조회
+    public ResponseResultRankAllGetDTO getRankResultAll(UUID userId, UUID gameId){
+
+        return getResultRankAllBean.exec(userId, gameId);
 
     }
 

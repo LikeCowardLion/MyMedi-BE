@@ -127,6 +127,26 @@ public class ResultController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMap);
     }
 
+    // 결과 랭킹 전체 조회
+    @GetMapping("/rank/{gameId}")
+    public ResponseEntity<Map<String, Object>> getRankResultAll(@PathVariable("userId") UUID userId, @PathVariable("gameId") UUID gameId){
+
+        // 결과 랭킹 전체 조회 service 실행
+        ResponseResultRankAllGetDTO dto = resultService.getRankResultAll(userId, gameId);
+
+        // 결과 랭킹 전체 조회 성공 여부 설정
+        boolean success = (dto == null) ? false : true;
+
+        // 반환할 JSON 데이터 설정
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("success", success);
+        responseMap.put("message", success ? "결과 랭킹 전체 조회 성공" : "결과 랭킹 전체 조회 실패");
+        responseMap.put("rankInfo", dto);
+
+        // status, body 설정 후 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(responseMap);
+    }
+
     // 결과 저장
     @PostMapping("")
     public ResponseEntity<Map<String, Object>> saveResult(@PathVariable("userId") UUID userId, @RequestBody RequestResultSaveDTO requestResultSaveDTO){

@@ -35,4 +35,8 @@ public interface ResultRepositoryJPA extends JpaRepository<ResultDAO, UUID> {
 
     List<ResultDAO> findByGameIdAndAgeBetweenAndStartedAtBetween(UUID gameId, Integer ageStart, Integer ageEnd, LocalDateTime periodStart, LocalDateTime periodEnd);
 
+    List<ResultDAO> findByGameIdAndScoreGreaterThanEqualOrderByScoreDescStartedAtDesc(UUID gameId, Integer score);
+
+    List<ResultDAO> findTop100ByGameIdOrderByScoreDescStartedAtDesc(UUID gameId);
+
 }
