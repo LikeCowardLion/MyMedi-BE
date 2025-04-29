@@ -44,10 +44,24 @@ public class GetResultDAOBean {
 
     }
 
-    // userId와 gameId로 날짜별 최고 점수 전체 검색
+    // userId와 gameId로 날짜별 최고 점수의 DAO 전체 검색해 반환
     public List<ResultDAO> exec(UUID userId, UUID gameId){
 
         return resultRepositoryJPA.findDailyMaxScores(userId, gameId);
+
+    }
+
+    // userId와 gameId로 해당 기간의 DAO 검색해 반환
+    public List<ResultDAO> exec(UUID userId, UUID gameId, LocalDateTime start, LocalDateTime end){
+
+        return resultRepositoryJPA.findByUserIdAndGameIdAndStartedAtBetween(userId, gameId, start, end);
+
+    }
+
+    // gameId로 해당 연령대, 해당 기간의 DAO 검색해 반환
+    public List<ResultDAO> exec(UUID gameId, Integer ageStart, Integer ageEnd, LocalDateTime periodStart, LocalDateTime periodEnd){
+
+        return resultRepositoryJPA.findByGameIdAndAgeBetweenAndStartedAtBetween(gameId, ageStart, ageEnd, periodStart, periodEnd);
 
     }
 

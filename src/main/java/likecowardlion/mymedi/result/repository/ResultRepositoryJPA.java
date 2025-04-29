@@ -29,4 +29,10 @@ public interface ResultRepositoryJPA extends JpaRepository<ResultDAO, UUID> {
     """)
     List<ResultDAO> findDailyMaxScores(UUID userId, UUID gameId);
 
+    ResultDAO findTop1ByUserIdAndGameIdOrderByScoreDesc(UUID userId, UUID gameId);
+
+    List<ResultDAO> findByUserIdAndGameIdAndStartedAtBetween(UUID userId, UUID gameId, LocalDateTime start, LocalDateTime end);
+
+    List<ResultDAO> findByGameIdAndAgeBetweenAndStartedAtBetween(UUID gameId, Integer ageStart, Integer ageEnd, LocalDateTime periodStart, LocalDateTime periodEnd);
+
 }
