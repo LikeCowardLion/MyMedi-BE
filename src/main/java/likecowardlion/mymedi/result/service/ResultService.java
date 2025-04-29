@@ -1,10 +1,7 @@
 package likecowardlion.mymedi.result.service;
 
 import likecowardlion.mymedi.result.bean.*;
-import likecowardlion.mymedi.result.domain.DTO.RequestResultSaveDTO;
-import likecowardlion.mymedi.result.domain.DTO.ResponseResultMonthGetDTO;
-import likecowardlion.mymedi.result.domain.DTO.ResponseResultStatisticGetDTO;
-import likecowardlion.mymedi.result.domain.DTO.ResponseResultWeekGetDTO;
+import likecowardlion.mymedi.result.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +15,16 @@ public class ResultService {
     GetResultMonthBean getResultMonthBean;
     GetResultWeekBean getResultWeekBean;
     GetResultStatisticBean getResultStatisticBean;
+    GetResultStatisticAllBean getResultStatisticAllBean;
     SaveResultBean saveResultBean;
 
     @Autowired
-    public ResultService(GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, SaveResultBean saveResultBean){
+    public ResultService(GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, GetResultStatisticAllBean getResultStatisticAllBean, SaveResultBean saveResultBean){
         this.getResultCountBean = getResultCountBean;
         this.getResultMonthBean = getResultMonthBean;
         this.getResultWeekBean = getResultWeekBean;
         this.getResultStatisticBean = getResultStatisticBean;
+        this.getResultStatisticAllBean = getResultStatisticAllBean;
         this.saveResultBean = saveResultBean;
     }
 
@@ -56,6 +55,13 @@ public class ResultService {
     public ResponseResultStatisticGetDTO getStatisticResult(UUID userId, UUID gameId){
 
         return getResultStatisticBean.exec(userId, gameId);
+
+    }
+
+    // 결과 통계 전체 조회
+    public List<ResponseResultStatisticAllGetDTO> getStatisticResultAll(UUID userId){
+
+        return getResultStatisticAllBean.exec(userId);
 
     }
 
