@@ -26,6 +26,25 @@ public class ResultController {
 
 
 
+    // 개발 테스트용 - 결과 전체 조회
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Object>> getResultAll(){
+
+        // 결과 횟수 조회 service 실행
+        //Integer count = resultService.getResultCount(userId);
+        List<ResponseResultAllGetDTO> dtoList = resultService.getResultAll();
+
+        // 반환할 JSON 데이터 설정
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("success", true);
+        responseMap.put("message", "결과 전체 조회 성공");
+        responseMap.put("resultList", dtoList);
+
+        // status, body 설정 후 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(responseMap);
+
+    }
+
     // 결과 횟수 조회
     @GetMapping("/count")
     public ResponseEntity<Map<String, Object>> getResultCount(@PathVariable("userId") UUID userId){

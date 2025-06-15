@@ -22,6 +22,11 @@ public class GetResultDAOBean {
 
 
 
+    // 전체 DAO 반환
+    public List<ResultDAO> exec() {
+        return resultRepositoryJPA.findAll();
+    }
+
     // userId로 검색, 전체 DAO 반환
     public List<ResultDAO> exec(UUID userId) { return resultRepositoryJPA.findByUserId(userId); }
 

@@ -11,6 +11,7 @@ import java.util.UUID;
 @Service
 public class ResultService {
 
+    GetResultAllBean getResultAllBean;
     GetResultCountBean getResultCountBean;
     GetResultMonthBean getResultMonthBean;
     GetResultWeekBean getResultWeekBean;
@@ -20,7 +21,8 @@ public class ResultService {
     SaveResultBean saveResultBean;
 
     @Autowired
-    public ResultService(GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, GetResultStatisticAllBean getResultStatisticAllBean, GetResultRankAllBean getResultRankAllBean, SaveResultBean saveResultBean){
+    public ResultService(GetResultAllBean getResultAllBean, GetResultCountBean getResultCountBean, GetResultMonthBean getResultMonthBean, GetResultWeekBean getResultWeekBean, GetResultStatisticBean getResultStatisticBean, GetResultStatisticAllBean getResultStatisticAllBean, GetResultRankAllBean getResultRankAllBean, SaveResultBean saveResultBean){
+        this.getResultAllBean = getResultAllBean;
         this.getResultCountBean = getResultCountBean;
         this.getResultMonthBean = getResultMonthBean;
         this.getResultWeekBean = getResultWeekBean;
@@ -31,6 +33,13 @@ public class ResultService {
     }
 
 
+
+    // 개발 테스트용 - 결과 전체 조회
+    public List<ResponseResultAllGetDTO> getResultAll(){
+
+        return getResultAllBean.exec();
+
+    }
 
     // 결과 횟수 조회
     public Integer getResultCount(UUID userId){
